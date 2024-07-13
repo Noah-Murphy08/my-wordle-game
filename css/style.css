@@ -1,13 +1,38 @@
-
+* {
+    background-color: rgb(248, 240, 230);
+    margin: 0;
+    padding: 0;
+}
 
 h1 {
     text-align: center;
+    font-size: 4rem;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.rules {
+    display: flex;
+    justify-content:flex-end;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 100%;
+    margin: 20px 0 0 20px;
+    color: rgb(140, 140, 16);
+    border-color: rgb(140, 140, 16);
 }
 
 #game-board {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 40px;
 }
 
 .letter-box {
@@ -21,6 +46,8 @@ h1 {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
+    min-width: 90px;
+    min-height: 90px;
 }
 
 .word-row {
@@ -42,7 +69,10 @@ h1 {
     padding: .5rem;
     cursor: pointer;
     margin: 1px 1px;
-    width: 3%;
+    min-height: 80px;
+    min-width: 80px;
+    border-radius: 100%;
+    background-color: rgb(221, 219, 240);
 }
 
 .delete,
@@ -52,4 +82,10 @@ h1 {
     text-transform: uppercase;
     padding: .5rem;
     cursor: pointer;
+    min-height: 80px;
+    min-width: 80px;
+    cursor: pointer;
+    margin: 1px 1px;
+    border-radius: 100%;
+    background-color: rgb(221, 219, 240);
 }
