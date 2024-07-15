@@ -7,6 +7,8 @@ const numberOfGuesses = 5;
 let guessesRemaining = numberOfGuesses;
 let guess = [];
 let nextLetter = 0;
+let checkGuess = words[Math.floor(Math.random() * words.length)]
+console.log(checkGuess)
 
 
 
@@ -32,7 +34,27 @@ function init() {
     }
 }
 
+function insertLetter(letter) {
+    if (nextLetter === 5) {
+        return;
+    }
+    let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
+    let box = row.children[nextLetter];
+    box.textContent = letter;
+    guess.push(letter);
+    nextLetter += 1;
+}
 
+function deleteLetter() {
+    if (nextLetter === 0) {
+        return;
+    }
+    nextLetter -= 1;
+    let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
+    let box = row.children[nextLetter];
+    box.textContent = '';
+    guess.pop();
+}
 
 init();
 
@@ -41,7 +63,14 @@ init();
 document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) => {
     button.addEventListener('click', (evt) => {
         const key = evt.target.innerText;
-        console.log(key)
+        if (key.length === 1 && key.match(/[a-z]/i)) {
+            insertLetter(key);
+        } else if (key === 'DEL') {
+            deleteLetter();
+            console.log(deleteLetter);
+        } else if (key === 'enter') {
+
+        }
     });
 });
 

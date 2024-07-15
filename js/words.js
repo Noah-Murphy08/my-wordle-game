@@ -5757,5 +5757,3 @@ const words = [
     'biffy',
     'pupal'
 ];
-
-// module.exports = words
