@@ -32,10 +32,17 @@ function init() {
     }
 }
 
+
+
 init();
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) => {
+    button.addEventListener('click', (evt) => {
+        const key = evt.target.innerText;
+        console.log(key)
+    });
+});
 
 
