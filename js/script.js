@@ -1,4 +1,4 @@
-// const words = require('./js/words.js')
+import { words } from './words.js'
 /*-------------------------------- Constants --------------------------------*/
 
 
@@ -34,6 +34,12 @@ function init() {
     }
 }
 
+function updateBoard() {
+    guessesRemaining -= 1;
+    guess = [];
+    nextLetter = 0;
+}
+
 function insertLetter(letter) {
     if (nextLetter === 5) {
         return;
@@ -41,6 +47,9 @@ function insertLetter(letter) {
     let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
     let box = row.children[nextLetter];
     box.textContent = letter;
+    if (letter === checkGuess[nextLetter]) {
+        box.classList.add('match')
+    }
     guess.push(letter);
     nextLetter += 1;
 }
@@ -56,6 +65,35 @@ function deleteLetter() {
     guess.pop();
 }
 
+function checkAnswer() {
+    let guessWord = guess.join('').toLowerCase();
+    console.log(guessWord)
+    if (guess.length !== 5) {
+        return;
+    }
+    let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
+    for (let g = 0; g < 5; g++) {
+        let box = row.children[g];
+        if (checkGuess[g] === guessWord[g]) {
+            box.classList.add('match');
+        } else {
+            box.classList.add('no-match')
+        }
+    }
+    for (let d = 0; d < 5; d++) {
+        let box = row.children[d];
+        if (checkGuess !== guessWord && checkGuess.includes(guessWord)) {
+            box.classList.remove('no-match');
+            box.classList.add('semi-match');
+        }
+    }
+    if (guessWord === guess) {
+
+    } else {
+        updateBoard();
+    }
+}
+
 init();
 
 
@@ -68,8 +106,8 @@ document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) =>
         } else if (key === 'DEL') {
             deleteLetter();
             console.log(deleteLetter);
-        } else if (key === 'enter') {
-
+        } else if (key === 'ENTER') {
+            checkAnswer();
         }
     });
 });
