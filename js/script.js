@@ -72,35 +72,46 @@ function checkAnswer() {
         return;
     }
     let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
+    let checkGuessCopy = checkGuess.split('');
     for (let g = 0; g < 5; g++) {
         let box = row.children[g];
         if (checkGuess[g] === guessWord[g]) {
             box.classList.add('match');
-            box.classList.remove('no-match', 'semi-match')
+            box.classList.remove('no-match', 'semi-match');
+            checkGuessCopy[g] = '_';
         } else {
             box.classList.add('no-match');
-            box.classList.remove('match', 'semi-match')
+            box.classList.remove('match', 'semi-match');
         }
     }
     for (let d = 0; d < 5; d++) {
         if (checkGuess[d] !== guessWord[d] && checkGuess.includes(guessWord[d])) {
-            let rightInd = checkGuess.indexOf(guessWord[d]);
-            if (rightInd !== -1 && checkGuess[rightInd] !== guessWord[rightInd]) {
+            let rightInd = checkGuessCopy.indexOf(guessWord[d]);
+            if (rightInd !== -1 && checkGuessCopy[rightInd] !== '_') {
                 let box = row.children[d];
                 if (box.classList.contains('no-match')) {
                     box.classList.remove('no-match');
                     box.classList.add('semi-match');
-                    checkGuess = checkGuess.replace(guessWord[d], '_');
+                    checkGuessCopy[rightInd] = '_';
+
                 }
             }
         }
     }
-    if (guessWord === guess) {
+    if (guessWord === checkGuess) {
 
     } else {
         updateBoard();
     }
 }
+
+// function colorKeyboard(letter, className) {
+//     let key = document.getElementById(`${letter}`);
+//     if (key) {
+//         key.classList.remove('no-match', 'semi-match', 'match');
+//         key.classList.add(className)
+//     }
+// }
 
 init();
 
