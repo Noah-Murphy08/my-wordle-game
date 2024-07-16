@@ -7,13 +7,13 @@ const numberOfGuesses = 5;
 let guessesRemaining = numberOfGuesses;
 let guess = [];
 let nextLetter = 0;
-let checkGuess = words[Math.floor(Math.random() * words.length)]
+let checkGuess = words[Math.floor(Math.random() * words.length)];
 console.log(checkGuess)
 
 
 
 /*------------------------ Cached Element References ------------------------*/
-
+const messageEl = document.getElementById('message');
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -66,11 +66,10 @@ function deleteLetter() {
 }
 
 function checkAnswer() {
-    let guessWord = guess.join('').toLowerCase();
-    console.log(guessWord)
     if (guess.length !== 5) {
         return;
     }
+    let guessWord = guess.join('').toLowerCase();
     let row = document.getElementsByClassName('word-row')[numberOfGuesses - guessesRemaining];
     let checkGuessCopy = checkGuess.split('');
     for (let g = 0; g < 5; g++) {
@@ -99,19 +98,23 @@ function checkAnswer() {
         }
     }
     if (guessWord === checkGuess) {
-
+        message();
     } else {
         updateBoard();
+        message();
     }
 }
 
-// function colorKeyboard(letter, className) {
-//     let key = document.getElementById(`${letter}`);
-//     if (key) {
-//         key.classList.remove('no-match', 'semi-match', 'match');
-//         key.classList.add(className)
-//     }
-// }
+function message() {
+    let guessWord = guess.join('').toLowerCase();
+    if (guessesRemaining > 0 && guessWord !== checkGuess) {
+        messageEl.textContent = `There are ${guessesRemaining} guesses remaining.`;
+    } else if (guessesRemaining >= 0 && guessWord == checkGuess) {
+        messageEl.textContent = `Congrats! You win!`;
+    } else {
+        messageEl.textContent = `Nice try! The correct word was ${checkGuess}. Want to try again?`;
+    }
+}
 
 init();
 
@@ -127,6 +130,7 @@ document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) =>
             console.log(deleteLetter);
         } else if (key === 'ENTER') {
             checkAnswer();
+            message();
         }
     });
 });

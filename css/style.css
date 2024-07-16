@@ -103,3 +103,10 @@ h1 {
     background-color: red;
     color: white;
 }
+
+h2 {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    padding: 5px 5px 0 5px;
+}
