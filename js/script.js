@@ -109,11 +109,46 @@ function message() {
     let guessWord = guess.join('').toLowerCase();
     if (guessesRemaining > 0 && guessWord !== checkGuess) {
         messageEl.textContent = `There are ${guessesRemaining} guesses remaining.`;
+        removeReset();
     } else if (guessesRemaining >= 0 && guessWord == checkGuess) {
         messageEl.textContent = `Congrats! You win!`;
+        createReset();
     } else {
         messageEl.textContent = `Nice try! The correct word was ${checkGuess}. Want to try again?`;
+        createReset();
     }
+}
+
+
+function removeReset() {
+    let playAgain = document.getElementById('restart');
+    if (playAgain) {
+        playAgain.remove();
+    }
+}
+
+function createReset() {
+    let playAgain = document.createElement('button');
+    playAgain.textContent = 'Play again';
+    playAgain.id = 'reset';
+    playAgain.addEventListener('click', function() {
+        reset();
+    });
+    messageEl.appendChild(playAgain);
+}
+
+function reset() {
+    guessesRemaining = numberOfGuesses;
+    guess = [];
+    nextLetter = 0;
+    checkGuess = words[Math.floor(Math.random() * words.length)];
+    console.log(checkGuess);
+    let board = document.getElementById('game-board');
+    while (board.firstChild) {
+        board.removeChild(board.firstChild);
+    }
+    init();
+    messageEl.textContent = '';
 }
 
 init();

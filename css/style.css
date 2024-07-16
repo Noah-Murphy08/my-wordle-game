@@ -110,3 +110,12 @@ h2 {
     justify-content: center;
     padding: 5px 5px 0 5px;
 }
+
+#reset {
+    font-size: 2rem;
+    border: none;
+    color: rgb(4, 4, 175);
+    cursor: pointer;
+    padding: 0 20px;
+    font-weight: 900;
+}
