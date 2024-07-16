@@ -76,15 +76,23 @@ function checkAnswer() {
         let box = row.children[g];
         if (checkGuess[g] === guessWord[g]) {
             box.classList.add('match');
+            box.classList.remove('no-match', 'semi-match')
         } else {
-            box.classList.add('no-match')
+            box.classList.add('no-match');
+            box.classList.remove('match', 'semi-match')
         }
     }
     for (let d = 0; d < 5; d++) {
-        let box = row.children[d];
-        if (checkGuess !== guessWord && checkGuess.includes(guessWord)) {
-            box.classList.remove('no-match');
-            box.classList.add('semi-match');
+        if (checkGuess[d] !== guessWord[d] && checkGuess.includes(guessWord[d])) {
+            let rightInd = checkGuess.indexOf(guessWord[d]);
+            if (rightInd !== -1 && checkGuess[rightInd] !== guessWord[rightInd]) {
+                let box = row.children[d];
+                if (box.classList.contains('no-match')) {
+                    box.classList.remove('no-match');
+                    box.classList.add('semi-match');
+                    checkGuess = checkGuess.replace(guessWord[d], '_');
+                }
+            }
         }
     }
     if (guessWord === guess) {
