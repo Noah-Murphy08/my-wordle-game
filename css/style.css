@@ -17,7 +17,7 @@ h1 {
     justify-content: center;
 }
 
-.rules {
+#rules {
     display: flex;
     justify-content:flex-end;
     padding: 10px;
@@ -76,6 +76,10 @@ h1 {
     background-color: rgb(221, 219, 240);
 }
 
+.keyboard-btn:hover {
+    border: 1px solid blue;
+}
+
 .delete,
 .enter {
     font-size: 1.5rem;
@@ -89,6 +93,14 @@ h1 {
     margin: 1px 1px;
     border-radius: 100%;
     background-color: rgb(221, 219, 240);
+}
+
+.delete:hover {
+    border: 1px solid blue;
+}
+
+.enter:hover {
+    border: 1px solid blue;
 }
 
 .match {
@@ -118,4 +130,9 @@ h2 {
     cursor: pointer;
     padding: 0 20px;
     font-weight: 900;
+}
+
+#showrules {
+    display: none;
+    font-size: 2rem;
 }

@@ -8,13 +8,13 @@ let guessesRemaining = numberOfGuesses;
 let guess = [];
 let nextLetter = 0;
 let checkGuess = words[Math.floor(Math.random() * words.length)];
-console.log(checkGuess)
 
 
 
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.getElementById('message');
-const rulesEl = document.getElementsByClassName('rules');
+const rulesEl = document.getElementById('rules');
+const rulesText = document.getElementById('showrules')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -142,7 +142,6 @@ function reset() {
     guess = [];
     nextLetter = 0;
     checkGuess = words[Math.floor(Math.random() * words.length)];
-    console.log(checkGuess);
     let board = document.getElementById('game-board');
     while (board.firstChild) {
         board.removeChild(board.firstChild);
@@ -152,11 +151,14 @@ function reset() {
 }
 
 function displayRules() {
-    
+    if (rulesText.style.display === 'none') {
+        rulesText.style.display = 'block';
+    } else {
+        rulesText.style.display = 'none';
+    }
 }
 
 init();
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) => {
@@ -166,7 +168,6 @@ document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) =>
             insertLetter(key);
         } else if (key === 'DEL') {
             deleteLetter();
-            console.log(deleteLetter);
         } else if (key === 'ENTER') {
             checkAnswer();
             message();
@@ -174,4 +175,4 @@ document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) =>
     });
 });
 
-
+rulesEl.addEventListener('click', displayRules);
