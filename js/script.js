@@ -14,7 +14,7 @@ console.log(checkGuess)
 
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.getElementById('message');
-
+const rulesEl = document.getElementsByClassName('rules');
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -66,7 +66,7 @@ function deleteLetter() {
 }
 
 function checkAnswer() {
-    if (guess.length !== 5) {
+    if (guess.length !== 5 || !words.includes(guess.join('').toLocaleLowerCase())) {
         return;
     }
     let guessWord = guess.join('').toLowerCase();
@@ -149,6 +149,10 @@ function reset() {
     }
     init();
     messageEl.textContent = '';
+}
+
+function displayRules() {
+    
 }
 
 init();
