@@ -19,6 +19,7 @@ In order to win, all of the five boxes in the current row must be green, signify
 
 ## Screenshots
 <img src="https://imgur.com/1ls5lUh.png" width="500" height="400">
+<img src="https://imgur.com/5wiIMs5.png" width="500" height="500">
 
 ## Technologies Used
 JavaScript, HTML, and CSS
@@ -34,4 +35,3 @@ JavaScript, HTML, and CSS
  - virtual keyboard updates with the same cooresponding colors as the game board.
  - animate.css implementaion
  - unique messages rendered based on a word not having five letters or trying to use a word that is not within the word array
- 

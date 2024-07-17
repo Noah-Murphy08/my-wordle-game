@@ -1,9 +1,8 @@
 import { words } from './words.js'
-/*-------------------------------- Constants --------------------------------*/
 
 
 const numberOfGuesses = 5;
-/*---------------------------- Variables (state) ----------------------------*/
+
 let guessesRemaining = numberOfGuesses;
 let guess = [];
 let nextLetter = 0;
@@ -11,12 +10,10 @@ let checkGuess = words[Math.floor(Math.random() * words.length)];
 
 
 
-/*------------------------ Cached Element References ------------------------*/
 const messageEl = document.getElementById('message');
 const rulesEl = document.getElementById('rules');
 const rulesText = document.getElementById('showrules')
 
-/*-------------------------------- Functions --------------------------------*/
 function init() {
     let board = document.getElementById('game-board');
     
@@ -160,7 +157,7 @@ function displayRules() {
 
 init();
 
-/*----------------------------- Event Listeners -----------------------------*/
+
 document.querySelectorAll('.keyboard-btn, .enter, .delete').forEach ((button) => {
     button.addEventListener('click', (evt) => {
         const key = evt.target.innerText;
